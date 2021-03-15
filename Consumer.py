@@ -2,11 +2,13 @@ import boto3
 import json
 import sys
 import time
-
+import logging
 
 
 def main():
-    sys.argv[0];
+    
+    logging.basicConfig(filename='consumer.log', encoding='utf-8', level=logging.INFO)
+    
     if(len(sys.argv) != 3):
         print("Invalid parameters")
         print("Usage: python Consumer.py [Storage (s3/ddb)] [Bucket name]")
@@ -18,30 +20,38 @@ def main():
     
     bucket = s3_request.Bucket('usu-cs5260-kosta-requests')
     
-    #while True:
+    logging.info("The widgets are being added to: " + storage_type)
+    
+    while True:
         #check for requests in the bucket
-    bucket_requests = []
-    for item in bucket.objects.all():
-        bucket_requests.append(item)
-    
-    print(bucket_requests[0])
-    
-    if len(bucket_requests) > 0:
-        #get the most recent request 
-        curr_request = s3_client.get_object(Bucket=bucket_name, Key=bucket_requests[0].key)
+        bucket_requests = []
+        for item in bucket.objects.all():
+            bucket_requests.append(item)
         
-        #delete the request from the bucket (it is being used)
-        s3_client.delete_object(Bucket=bucket_name, Key=bucket_requests[0].key)
-        
-        #create the json file to create widgets with.
-        request_json = json.load(curr_request['Body'])
-        request_type = request_json['type']
-        
-        #switch do decide which method to call (create, delete, or change) depending on the type of request. 
-        options[request_type](storage_type, request_json)
-        
-    else:
-        time.sleep(.2)
+        if len(bucket_requests) > 0:
+            #get the most recent request 
+            curr_request = s3_client.get_object(Bucket=bucket_name, Key=bucket_requests[0].key)
+            
+            #delete the request from the bucket (it is being used)
+            s3_client.delete_object(Bucket=bucket_name, Key=bucket_requests[0].key)
+            
+            #create the json file to create widgets with.
+            try:
+                request_json = json.load(curr_request['Body'])
+                request_type = request_json['type']
+            
+                #switch do decide which method to call (create, delete, or change) depending on the type of request. 
+                if request_type == 'create':
+                    options[request_type](storage_type, request_json)
+                print("Created Widget")
+                logging.info("Successfully created a widget")
+            except Exception:
+                logging.error("could not add the widget.")
+                continue
+            
+        else:
+            logging.info("no more widgets to add")
+            time.sleep(.2)
 
 def widget_create_request(storage_type, request_json):
     #TO DO in this assignment
@@ -54,6 +64,7 @@ def widget_create_request(storage_type, request_json):
             Bucket=bucket_name, 
             Key=key
         )
+        logging.info("Added the widget to s3")
         
     if(storage_type == 'ddb'):
         dynamodb = boto3.resource('dynamodb')
@@ -66,9 +77,8 @@ def widget_create_request(storage_type, request_json):
         }
         table = dynamodb.Table('widgets')
         table.put_item(Item=widget)
+        logging.info("Added the widget to dynamoDB")
         
-        print(widget)
-    #print(request_json)
     return
 
 def widget_delete_request():
