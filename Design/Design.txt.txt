@@ -1,0 +1,12 @@
+The design I went with was fairly simple. I gather the command line arguments to determine if the widgets
+will be sent to s3 or DynamoDB. 's3' or 'ddb' are the valid options. The last argument is the name of the bucket. 
+In the main function, I check for valid input, then start loop. In this loop, requests in the bucket are added to a list
+(if there are any). If requests were added, I grab the first request in the list and then delete the request from the bucket.
+Once I have the request object, I try converting it to a json object using the requests "Body" element. I then
+create a variable called request_type to determine if request is a create, delete, or change request. I have three methods
+that can be called from this point, widget_create_request(), widget_delete_request(), widget_change_request(). The delete and change 
+methods will be implimented in the future. 
+
+The widget_create_request() takes two parameters: storage_type and request_json. Storage_type is a string to determine 
+where the widget should be sent. "s3" sends to s3, and "ddb" send to dynamodb. This method then sends the widget 
+to the correct bucket (bucket 2).
