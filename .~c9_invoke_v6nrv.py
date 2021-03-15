@@ -29,15 +29,13 @@ def main():
     if len(bucket_requests) > 0:
         #get the most recent request 
         curr_request = s3_client.get_object(Bucket=bucket_name, Key=bucket_requests[0].key)
-        
         #delete the request from the bucket (it is being used)
-        s3_client.delete_object(Bucket=bucket_name, Key=bucket_requests[0].key)
-        
-        #create the json file to create widgets with.
+        #s3_client.delete_object(Bucket=bucket_name, Key=curr_request.key)
         request_json = json.load(curr_request['Body'])
+        
         request_type = request_json['type']
         
-        #switch do decide which method to call (create, delete, or change) depending on the type of request. 
+
         options[request_type](storage_type, request_json)
         
     else:
@@ -56,7 +54,8 @@ def widget_create_request(storage_type, request_json):
         )
         
     if(storage_type == 'ddb'):
-        dynamodb = boto3.resource('dynamodb')
+        client = boto3.client('dynamodb')
+        
         widget = {
             'widget_id' : request_json['widgetId'],
             'owner' : request_json['owner'],
@@ -64,9 +63,10 @@ def widget_create_request(storage_type, request_json):
             'description' : request_json['description'],
             'attributes' : request_json['otherAttributes'],
         }
-        table = dynamodb.Table('widgets')
-        table.put_item(Item=widget)
-        
+        table = ''
+        client.put_object(
+            
+        )
         print(widget)
     #print(request_json)
     return
