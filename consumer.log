@@ -1,0 +1,66 @@
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:The widgets are being added to: s3
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+INFO:root:Successfully created a widget
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+INFO:root:Successfully created a widget
+ERROR:root:could not add the widget.
+INFO:root:Successfully created a widget
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+INFO:root:Successfully created a widget
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+ERROR:root:could not add the widget.
+INFO:root:Successfully created a widget
+INFO:root:Successfully created a widget
+INFO:root:Successfully created a widget
+INFO:root:Successfully created a widget
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+ERROR:root:could not add the widget.
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+INFO:root:Successfully created a widget
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+INFO:root:Successfully created a widget
+INFO:root:Successfully created a widget
+INFO:root:Added the widget to s3
+INFO:root:Successfully created a widget
+INFO:root:Successfully created a widget
+INFO:root:no more widgets to add
+INFO:root:no more widgets to add
+INFO:root:no more widgets to add
+INFO:root:no more widgets to add
+INFO:root:no more widgets to add
+INFO:root:no more widgets to add
+INFO:root:no more widgets to add
+INFO:root:no more widgets to add
+INFO:root:no more widgets to add
+INFO:root:no more widgets to add
+INFO:root:no more widgets to add
+INFO:root:no more widgets to add
+INFO:root:no more widgets to add
+INFO:root:no more widgets to add
+INFO:root:no more widgets to add
