@@ -7,7 +7,7 @@ import logging
 
 def main():
     
-    logging.basicConfig(filename='consumer.log', encoding='utf-8', level=logging.INFO)
+    logging.basicConfig(filename='consumer.log', level=logging.INFO)
     
     if(len(sys.argv) != 3):
         print("Invalid parameters")
